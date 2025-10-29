@@ -1,0 +1,354 @@
+#include <stdio.h>
+
+int main()
+{
+	// Question 1
+	
+	int class[3][4] = {{85, 92, 78, 90},{88, 76, 95, 84},{90, 85, 88, 92}};
+	int i, j;
+	float sum, avg;
+	
+	for(i = 0; i < 3; i++)
+	{
+		sum = 0;
+		for(j = 0; j < 4; j++)
+		{
+			sum = sum + class[i][j];
+		}
+		avg = sum/4;
+		printf("The average score for class %d is: %.2f\n",i+1,avg);
+	}
+	
+	// Question 2
+	
+	printf("\n");
+	
+	int Year[2][12] = {{12, 10, 15, 8, 5, 20, 25, 30, 10, 5, 8, 15},{10, 12, 18, 9, 6, 22, 28, 35, 12, 7, 9, 16}};
+	
+	for(i = 0; i < 2; i++)
+	{
+		for(j = 0; j < 12; j++)
+		{
+			printf("Year %d, Month %d: %d photos\n", i+1, j+1, Year[i][j]);
+		}
+		printf("\n");
+	}
+				
+	// Question 3
+	
+	int image[4][4] = {{1, 0, 1, 0},{0, 1, 0, 1},{1, 1, 0, 0},{0, 0, 1, 1}};
+	
+	printf("Original image:\n");
+	printf("\n");
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{	
+			if (image[i][j] == 0)
+			{
+				printf(" ");
+			}	else	{
+				printf("#");
+			}
+			
+		}
+		printf("\n");
+	}
+	
+	int inverted[4][4];
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{
+			if (image[i][j] == 0)
+			{
+				inverted[i][j] = 1;
+			}	else	{
+				inverted[i][j] = 0;
+			}
+		}
+	}
+	
+	printf("\nInverted image:\n");
+	printf("\n");
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{
+			if (inverted[i][j] == 0)
+			{
+				printf(" ");
+			}	else	{
+				printf("#");
+			}
+		}
+		printf("\n");
+	}
+	
+	printf("\nSide by Side:\n");
+	printf("\n");
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{	
+			if (image[i][j] == 0)
+			{
+				printf(" ");
+			}	else	{
+				printf("#");
+			}
+			if (inverted[i][j] == 0)
+			{
+				printf(" ");
+			}	else	{
+				printf("#");
+			}
+			
+		}
+		printf("\n");
+	}
+	
+	int whitepixels = 0;
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{	
+			if (image[i][j] == 1)
+			{
+				whitepixels = whitepixels + 1;
+			}
+			
+		}
+	}
+	
+	printf("\nTotal white pixels in the image: %d\n", whitepixels);
+	
+	// Question 4
+		
+	int cinema[3][3] = {{1,0,1},{0,0,1},{1,1,0}};
+	int available;
+	
+	for(i = 0; i < 3; i++)
+	{
+		for(j = 0; j < 3; j++)
+		{	
+			if (cinema[i][j] == 0)
+			{
+				available = available + 1;
+			}
+			
+		}
+	}
+	
+	printf("\nTotal number of seats available: %d\n", available);
+	printf("\n");
+	
+	for(i = 0; i < 3; i++)
+	{
+		for(j = 0; j < 3; j++)
+		{	
+			if (cinema[i][j] == 0)
+			{
+				printf("Seat %d in row %d is currently available!\n",j+1,i+1);
+			}
+			
+		}
+	}
+	
+	// Question 5
+	
+	int sensor[4][4] = {{12,15,10,9},{11,8,12,13},{14,13,9,7},{16,11,10,8}};
+	
+	printf("\nCold spots found: \n");
+	printf("\n");
+	
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{	
+			int isCold = 1; 	
+
+			if (i > 0 && sensor[i][j] >= sensor[i - 1][j]) isCold = 0; 
+			if (i < 3 && sensor[i][j] >= sensor[i + 1][j]) isCold = 0; 
+			if (j > 0 && sensor[i][j] >= sensor[i][j - 1]) isCold = 0; 
+			if (j < 3 && sensor[i][j] >= sensor[i][j + 1]) isCold = 0; 
+
+			if (isCold)
+			{
+				printf("At position (%d,%d) with temperature %d degree C\n", i + 1, j + 1, sensor[i][j]);
+			}
+		}
+	}
+	
+	// Question 6
+	
+	int k, p, u;
+	int m = 65;
+	int d = 1;
+	int r = 1;
+	int l = 1;
+	int o = 1;
+	printf("\n");
+	
+	for(i = 5; i > 0; i--)
+	{		
+		for(j = 0; j < i-1; j++)
+		{	
+			printf("  ");
+		}
+		for (j; j < 5; j++)
+		{
+			printf("* ");
+		}		
+		printf("|");
+		for(k = 5; k > l; k--)
+		{
+			printf("  ");
+		}
+		for(p = 0; p < l; p++)
+		{
+			printf(" %d", o);
+			o = o + 1;
+		}
+		printf(" |");
+		for(r = 5; r > d; r--)
+		{
+			printf("  ");
+		}
+		for(u = 0; u < d; u++)
+		{
+			printf(" %c", m);
+			m = m + 1;
+		}
+		o = 1;
+		m = 65;
+		d = d + 1;
+		l = l + 1;
+		printf("\n");
+	}
+	
+	// Question 7
+	
+	printf("\n");
+	
+	d = 1;
+	r = 1;
+	l = 1;
+	o = 1;
+	m = 65;
+	int t = 0;
+	int e = 0;
+	int z;
+	int c = 0;
+	int n = 0;
+	int x = 0;
+	int s = 1;
+
+    for(i = 5; i > 0; i--)
+    {
+    	c = c + 1;
+        for(j = 9; j > x + s; j--)
+        {
+            printf(" ");
+        }
+        for (j = 0; j < x + s; j++)
+        {
+            printf("* ");
+        }
+        for(z = 9; z > c + n; z--)
+        {
+        	printf(" ");
+		}
+        printf("|");
+        for(k = 9; k > l + t; k--)
+		{
+			printf(" ");
+		}
+		for(p = 0; p < l + t; p++)
+		{
+			printf(" %d", o);
+			o = o + 1;
+		}
+		for(z = 9; z > c + n; z--)
+        {
+        	printf(" ");
+		}
+		printf(" |");
+		for(r = 9; r > d + e; r--)
+		{
+			printf(" ");
+		}
+		for(u = 0; u < d + e; u++)
+		{
+			printf(" %c", m);
+			m = m + 1;
+		}
+		m = 65;
+		s = s + 1;
+		x = x + 1;
+		d = d + 1;
+		e = e + 1;
+		n = n + 1;
+		t = t + 1;
+		l = l + 1;
+		o = 1;
+        printf("\n");
+    }
+
+	// Question 8
+
+	printf("\n");
+
+	int occupy = 0;
+	int seated = 0;
+	int empty = 0;
+	int total = 0;
+	char seating[5][5];
+	
+	printf("\nClassroom Seating Chart:");
+	printf("\n=======================");
+	printf("\n(x = Student, o = Empty)\n");
+	printf("\n");
+	
+	for(i = 0; i < 5; i++)
+	{
+		for(j = 0; j < 5; j++)
+		{
+			if(occupy == 0)
+			{
+				seating[i][j] = 'x';
+				occupy = 1;
+				seated = seated + 1;
+				total = total + 1;
+			}	else	{
+				seating[i][j] = 'o';
+				occupy = 0;
+				empty = empty + 1;
+				total = total + 1;
+			}
+		}
+	}
+	
+	for(i = 0; i < 5; i++)
+	{
+		printf("Row %d", i+1);
+		for(j = 0; j < 5; j++)
+		{
+			printf(" %c", seating[i][j]);
+		}
+		printf("\n");
+	}
+	
+	printf("\nSummary:");
+	printf("\nStudents seated: %d", seated);
+	printf("\nEmpty desks: %d", empty);
+	printf("\nTotal desks: %d", total);
+	
+	return 0;
+	
+}
